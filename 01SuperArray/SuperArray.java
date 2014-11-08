@@ -1,32 +1,36 @@
 public class SuperArray{
 	private Object[] array;
 	private int truelength = 0;
-	public SuperArray{
+	//constructors
+	public SuperArray(){
 		array = new Object[10];
 	}
 	public SuperArray(int x){
 		array = new Object[x];
 	}
+	//toString
 	public String toString(){
-		String result = "[";
+		String result = "[ ";
 		for (Object e : array){
 			if (e != null){
-				result = result + e + ", "
+				result = result + e + " ";
 			}
 		}
-		return result
+		return result + "]";
 	}
+	//Getters
+	public int size(){
+		return truelength;
+	}
+	//Mutators
 	public void add(Object e){
 		truelength++;
 		for (int i = 0;i < array.length;i++){
-			if(array[i] != null){
+			if(array[i] == null){
 				array[i] = e;
 				return;
 			}
 		}
-	}
-	public int size(){
-		return truelength;
 	}
 	public void resize(int newsize){
 		Object[] temparray = new Object[newsize];
@@ -38,5 +42,11 @@ public class SuperArray{
 			temparray[i] = array[i];
 		}
 		array = temparray;
+	}
+	public void clear(){
+		for (int i = 0;i<array.length;i++){
+			array[i] = null;
+		}
+		truelength = 0;
 	}
 }
