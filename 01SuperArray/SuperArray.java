@@ -22,7 +22,23 @@ public class SuperArray{
 	public int size(){
 		return truelength;
 	}
+	public Object get(int index){
+		if (index < 0  || index >= array.length - 1){
+			System.out.println("Error: Index out of range");
+			return null;
+		}
+		return array[index];
+	}
 	//Mutators
+	public Object set(int index, Object o){
+		if (index < 0  || index >= size()){
+			System.out.println("Error: Index out of range");
+			return null;
+		}
+		Object result = array[index]; 
+		array[index] = o;
+		return result;
+	}
 	public void add(Object e){
 		truelength++;
 		for (int i = 0;i < array.length;i++){
@@ -31,6 +47,8 @@ public class SuperArray{
 				return;
 			}
 		}
+		resize(array.length + 1);
+		array[array.length - 1] = e;
 	}
 	public void resize(int newsize){
 		Object[] temparray = new Object[newsize];

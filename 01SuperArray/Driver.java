@@ -8,5 +8,9 @@ public class Driver{
 		System.out.println(a.size());
 		a.resize(1);
 		System.out.println(a);
+		a.add(new String("Two"));
+		System.out.println(a);
+		System.out.println(a.get(2));
+		System.out.println(a.get(0));
 	}
 }
