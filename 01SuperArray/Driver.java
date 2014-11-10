@@ -16,5 +16,7 @@ public class Driver{
 		System.out.println(a);
 		a.add(2,new String("Whatisthis"));
 		System.out.println(a);
+		a.remove(1);
+		System.out.println(a);
 	}
 }

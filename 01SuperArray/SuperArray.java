@@ -13,7 +13,7 @@ public class SuperArray{
 	public String toString(){
 		String result = "[ ";
 		for (Object e : array){
-			if (e != null){
+			if (e != null){//will not print null objects
 				result = result + e + " ";
 			}
 		}
@@ -69,6 +69,23 @@ public class SuperArray{
 		}
 		array = temparray;
 		array[index] = e;
+	}
+
+	public void remove(int index){
+		resize(truelength);
+		array[index] = null;
+		Object[] temparray = new Object[array.length];
+		boolean passednull = false;
+		for (int i = 0;i < array.length;i++){
+			if (array[i] == null){
+				passednull = true;
+			}
+			if (passednull){
+				temparray[i-1] = array[i];
+			}else{
+				temparray[i] = array[i];
+			}
+		}
 	}
 
 	public void resize(int newsize){
