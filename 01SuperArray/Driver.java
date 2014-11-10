@@ -12,5 +12,9 @@ public class Driver{
 		System.out.println(a);
 		System.out.println(a.get(2));
 		System.out.println(a.get(0));
+		a.resize(4);
+		System.out.println(a);
+		a.add(2,new String("Whatisthis"));
+		System.out.println(a);
 	}
 }
