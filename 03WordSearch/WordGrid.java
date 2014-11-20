@@ -46,6 +46,9 @@ public class WordGrid{
      *or there are overlapping letters that do not match, then false is returned.
      */
     public boolean addWordHorizontal(String word,int row, int col){
+	if (data[row][col] != 0 && data[row][col] != word.charAt(0)){
+	    return false;
+	}
 	return true;
     }
 
