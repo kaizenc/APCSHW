@@ -27,8 +27,8 @@ public class WordGrid{
     public String toString(){
 	String result = "";
         for (int q = 0;q<data.length;q++){
-            for (int p = 0;p<data[q].length;p++){
-                result = data[p][q] + " ";
+            for (int p = 0;p<(data[q]).length;p++){
+                result += data[p][q] + " ";
             }
             result+="\n";
         }
