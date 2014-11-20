@@ -1,5 +1,6 @@
 public class WordGrid{
     private char[][]data;
+    //test
 
     /**Initialize the grid to the size specified and fill all of the positions
      *with spaces.
