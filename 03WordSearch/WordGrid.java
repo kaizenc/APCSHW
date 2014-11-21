@@ -65,4 +65,13 @@ public class WordGrid{
         return false;
     }
 
+    public boolean addWordDiagonal(String word,int row, int col){
+        if (data[col][row] != 0 && data[col][row] != word.charAt(0) && word.length()+row <= 5 && word.length()+col <= 5){
+            for (int q = 0;q<word.length();q++){
+                data[col+q][row+q] = word.charAt(q);
+            }
+        }
+        return false;
+    }
+
 }
