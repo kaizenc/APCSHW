@@ -74,4 +74,8 @@ public class WordGrid{
         return false;
     }
 
+    public boolean allWords(File){
+        return true;
+    }
+
 }
