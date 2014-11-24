@@ -1,13 +1,28 @@
+import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+
 public class WordGrid{
     private char[][]data;
+    private File bank;
+    private Scanner input;
+    private Random rand = new Random();
+    private String alphabet = "abcdefghijklmnopqrstuvwxyz";
 
     /**Initialize the grid to the size specified and fill all of the positions
      *with spaces.
      *@param row is the starting height of the WordGrid
      *@param col is the starting width of the WordGrid
+     *@param list is the text file of words to put into the grid
      */
     public WordGrid(int rows,int cols){
         data = new char[rows][cols];
+        clear();
+    }
+    public WordGrid(int rows,int cols,String list) throws FileNotFoundException{
+        data = new char[rows][cols];
+        bank = new File(list);
+        input = new Scanner(bank);
         clear();
     }
 
@@ -27,8 +42,8 @@ public class WordGrid{
     public String toString(){
         String result = "";
         for (int q = 0;q<data.length;q++){
-            for (int p = 0;p<(data[q]).length;p++){
-                result += data[p][q] + " ";
+            for (int p = 0;p<(data[q].length);p++){
+                result += data[q][p] + " ";
             }
             result+="\n";
         }
@@ -46,10 +61,11 @@ public class WordGrid{
      *or there are overlapping letters that do not match, then false is returned.
      */
     public boolean addWordHorizontal(String word,int row, int col){
-        if (data[col][row] != 0 && data[col][row] != word.charAt(0) && word.length()+col <= 5){
+        if (data[row][col] != 0 && data[row][col] != word.charAt(0) && word.length()+col <= data[0].length){
             for (int q = 0;q<word.length();q++){
-                data[col+q][row] = word.charAt(q);
+                data[row][col+q] = word.charAt(q);
             }
+            return true;
         }
         return false;
     }
@@ -57,25 +73,39 @@ public class WordGrid{
     //vertical + diagonal should be implemented as well.
 
     public boolean addWordVertical(String word,int row, int col){
-        if (data[col][row] != 0 && data[col][row] != word.charAt(0) && word.length()+row <= 5){
+        if (data[row][col] != 0 && data[row][col] != word.charAt(0) && word.length()+row <= data.length){
             for (int q = 0;q<word.length();q++){
-                data[col][row+q] = word.charAt(q);
+                data[row+q][col] = word.charAt(q);
             }
+            return true;
         }
         return false;
     }
 
     public boolean addWordDiagonal(String word,int row, int col){
-        if (data[col][row] != 0 && data[col][row] != word.charAt(0) && word.length()+row <= 5 && word.length()+col <= 5){
+        if (data[row][col] != 0 && data[row][col] != word.charAt(0) && word.length()+row <= data.length && word.length()+col <= data[0].length){
             for (int q = 0;q<word.length();q++){
-                data[col+q][row+q] = word.charAt(q);
+                data[row+q][col+q] = word.charAt(q);
             }
+            return true;
         }
         return false;
     }
 
-    public boolean allWords(File){
-        return true;
+    public void finalize(){
+        for (int q = 0;q<data.length;q++){
+            for (int p = 0;p<(data[q].length);p++){
+                if (data[q][p] == '0'){
+                    data[q][p] = alphabet.charAt(rand.nextInt(alphabet.length()));
+                }
+            }
+        }
+    }
+
+    public void allWords(File words){
+        while(input.hasNextLine()){
+            String line = input.nextLine();
+        }
     }
 
 }
