@@ -102,9 +102,20 @@ public class WordGrid{
         }
     }
 
-    public void allWords(File words){
+    public void allWords(){
         while(input.hasNextLine()){
             String line = input.nextLine();
+            System.out.println(line);
+            for (int q = 0;q<data.length;q++){
+                boolean loopcheck = false;
+                for (int p = 0;p<data[q].length;p++){
+                    if(addWordHorizontal(line,q,p)){loopcheck = true; break;
+                    }else if(addWordVertical(line,q,p)){loopcheck = true; break;
+                    }else if(addWordDiagonal(line,q,p)){loopcheck = true; break;
+                    }
+                }
+                if(loopcheck){break;}
+            }
         }
     }
 
