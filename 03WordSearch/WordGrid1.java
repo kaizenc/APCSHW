@@ -2,18 +2,18 @@ import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class WordGrid{
+public class WordGrid1{
     private char[][]data;
     private File bank;
     private Scanner input;
     private Random rand = new Random();
     private String alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-    public WordGrid(int rows,int cols){
+    public WordGrid1(int rows,int cols){
         data = new char[rows][cols];
         clear();
     }
-    public WordGrid(int rows,int cols,String list) throws FileNotFoundException{
+    public WordGrid1(int rows,int cols,String list,int R) throws FileNotFoundException{
         data = new char[rows][cols];
         bank = new File(list);
         input = new Scanner(bank);
@@ -39,34 +39,22 @@ public class WordGrid{
         return result;
     }
 
-    public boolean addWordHorizontal(String word,int row, int col){
-        if (data[row][col] != 0 && data[row][col] != word.charAt(0) && word.length()+col <= data[0].length){
-            for (int q = 0;q<word.length();q++){
-                data[row][col+q] = word.charAt(q);
-            }
-            return true;
+    public boolean checkWord(String word,int row,int col,int dx,int dy){
+        if (dx < -1 || dx > 1 ||dy < -1 || dy > 1){
+            return false;
         }
-        return false;
+        if (dx == 0 || dy == 0){
+            return false;
+        }
+        if (!(data[row][col] == 0 || data[row][col] == word.charAt(0))){
+            return false;
+        }
     }
 
-    public boolean addWordVertical(String word,int row, int col){
-        if (data[row][col] != 0 && data[row][col] != word.charAt(0) && word.length()+row <= data.length){
-            for (int q = 0;q<word.length();q++){
-                data[row+q][col] = word.charAt(q);
-            }
-            return true;
+    public boolean addWord(String word,int row, int col, int dx, int dy){
+        for (int q = 0;q<word.length();q++){
+            data[row+dy][col+dx] = word.charAt(q);
         }
-        return false;
-    }
-
-    public boolean addWordDiagonal(String word,int row, int col){
-        if (data[row][col] != 0 && data[row][col] != word.charAt(0) && word.length()+row <= data.length && word.length()+col <= data[0].length){
-            for (int q = 0;q<word.length();q++){
-                data[row+q][col+q] = word.charAt(q);
-            }
-            return true;
-        }
-        return false;
     }
 
     public void finalize(){
