@@ -13,10 +13,11 @@ public class WordGrid1{
         data = new char[rows][cols];
         clear();
     }
-    public WordGrid1(int rows,int cols,String list,int R) throws FileNotFoundException{
+    public WordGrid1(int rows,int cols,String list,int RandSeed) throws FileNotFoundException{
         data = new char[rows][cols];
         bank = new File(list);
         input = new Scanner(bank);
+        rand.setSeed(RandSeed);
         clear();
     }
 
@@ -52,8 +53,10 @@ public class WordGrid1{
     }
 
     public boolean addWord(String word,int row, int col, int dx, int dy){
-        for (int q = 0;q<word.length();q++){
-            data[row+dy][col+dx] = word.charAt(q);
+        if (checkWord(word,row,col,dx,dy)){
+            for (int q = 0;q<word.length();q++){
+                data[row+dy][col+dx] = word.charAt(q);
+            }
         }
     }
 
