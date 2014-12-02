@@ -8,12 +8,13 @@ public class WordGrid1{
     private Scanner input;
     private Random rand = new Random();
     private String alphabet = "abcdefghijklmnopqrstuvwxyz";
+    private ArrayList wordbank = new ArrayList(0);
 
     public WordGrid1(int rows,int cols){
         data = new char[rows][cols];
         clear();
     }
-    public WordGrid1(int rows,int cols,String list,int RandSeed) throws FileNotFoundException{
+    public WordGrid1(int rows,int cols,String list,long RandSeed) throws FileNotFoundException{
         data = new char[rows][cols];
         bank = new File(list);
         input = new Scanner(bank);
@@ -47,17 +48,43 @@ public class WordGrid1{
         if (dx == 0 || dy == 0){
             return false;
         }
+        if (dx == 1 && word.length()+col !<= data[0].length){
+            return false;
+        }
+        if (dy == 1 && word.length()+row !<= data.length){
+            return false;
+        }
+        if (dx == -1 && word.length() !<= col){
+            return false;
+        }
+        if (dy == -1 && word.length() !<= row){
+            return false;
+        }
         if (!(data[row][col] == 0 || data[row][col] == word.charAt(0))){
             return false;
         }
+        return true;
     }
 
     public boolean addWord(String word,int row, int col, int dx, int dy){
         if (checkWord(word,row,col,dx,dy)){
+            wordbank.add(word);
             for (int q = 0;q<word.length();q++){
                 data[row+dy][col+dx] = word.charAt(q);
             }
         }
+    }
+
+    public String wordsInPuzzle(){
+        String result = "";
+        for (String word : wordbank){
+            result+=word;
+            result+="\n";
+        }
+    }
+
+    public void setSeed(long seed){
+        rand.setSeed(seed);
     }
 
     public void finalize(){
