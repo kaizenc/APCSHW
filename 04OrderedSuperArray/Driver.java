@@ -18,5 +18,12 @@ public class Driver{
 		System.out.println(a);
 		a.remove(1);
 		System.out.println(a);
+		/********************/
+		OrderedSuperArray b = new OrderedSuperArray(3);
+		b.add(new String("alphabet"));
+		System.out.println(b.get(0));
+		b.add(new String("boat"));
+		b.add(new String("continue"));
+		System.out.println(b);
 	}
 }
