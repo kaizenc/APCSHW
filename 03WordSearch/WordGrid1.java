@@ -9,16 +9,21 @@ public class WordGrid1{
     private Random rand = new Random();
     private String alphabet = "abcdefghijklmnopqrstuvwxyz";
     private ArrayList wordbank = new ArrayList(0);
+    private boolean finishit = true;
 
-    public WordGrid1(int rows,int cols){
+    public WordGrid1(int rows,int cols,String filename){
         data = new char[rows][cols];
+        bank = new File(filename);
         clear();
     }
-    public WordGrid1(int rows,int cols,String list,long RandSeed) throws FileNotFoundException{
+    public WordGrid1(int rows,int cols,String filename,long randSeed,int answer) throws FileNotFoundException{
         data = new char[rows][cols];
-        bank = new File(list);
+        bank = new File(filename);
         input = new Scanner(bank);
-        rand.setSeed(RandSeed);
+        rand.setSeed(randSeed);
+        if (answer == 1){
+            finishit = false;
+        }
         clear();
     }
 
@@ -31,6 +36,9 @@ public class WordGrid1{
     }
 
     public String toString(){
+        if (finishit){
+            finalize();
+        }
         String result = "";
         for (int q = 0;q<data.length;q++){
             for (int p = 0;p<(data[q].length);p++){
@@ -81,6 +89,7 @@ public class WordGrid1{
             result+=word;
             result+="\n";
         }
+        return result;
     }
 
     public void setSeed(long seed){
