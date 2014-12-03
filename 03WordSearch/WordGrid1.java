@@ -37,10 +37,6 @@ public class WordGrid1{
     }
 
     public String toString(){
-        if (finishit){
-            finalize();
-        }
-        wordload();
         System.out.println(wordsInPuzzle());
         String result = "";
         for (int q = 0;q<data.length;q++){
@@ -56,25 +52,22 @@ public class WordGrid1{
         if (dx < -1 || dx > 1 ||dy < -1 || dy > 1){
             return false;
         }
-        if (dx == 0 || dy == 0){
+        if (dx == 0 && dy == 0){
             return false;
         }
-        if (!(dx == 1 && word.length()+col <= data[0].length)){
-            return false;
+        if (dx == 1 && word.length()+col <= data[0].length){
+            return true;
         }
-        if (!(dy == 1 && word.length()+row <= data.length)){
-            return false;
+        if (dy == 1 && word.length()+row <= data.length){
+            return true;
         }
-        if (!(dx == -1 && word.length() <= col)){
-            return false;
+        if (dx == -1 && word.length() <= col){
+            return true;
         }
-        if (!(dy == -1 && word.length() <= row)){
-            return false;
+        if (dy == -1 && word.length() <= row){
+            return true;
         }
-        if (!(data[row][col] == 0 || data[row][col] == word.charAt(0))){
-            return false;
-        }
-        return true;
+        return false;
     }
 
     public boolean addWord(String word,int row, int col, int dx, int dy){
