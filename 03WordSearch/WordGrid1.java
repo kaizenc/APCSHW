@@ -8,7 +8,7 @@ public class WordGrid1{
     private Scanner input;
     private Random rand = new Random();
     private String alphabet = "abcdefghijklmnopqrstuvwxyz";
-    private ArrayList wordbank = new ArrayList(0);
+    private ArrayList<String> wordbank = new ArrayList<String>();
     private boolean finishit = true;
 
     public WordGrid1(int rows,int cols,String filename)throws FileNotFoundException{
@@ -49,32 +49,23 @@ public class WordGrid1{
     }
 
     public boolean checkWord(String word,int row,int col,int dx,int dy){
-        if (dx < -1 || dx > 1 ||dy < -1 || dy > 1){
+        if ((dx < -1 || dx > 1 || dy < -1 || dy > 1) || (dx == 0 && dy == 0) || (row+dy < 0) || (col+dx < 0)){
             return false;
         }
-        if (dx == 0 && dy == 0){
-            return false;
+
+        for(int i = 0; i < word.length(); i++){
+            if((row+i*dy < 0 || row+i*dy >= data.length) || (col+i*dx < 0 || col+i*dx >= data[0].length) || data[row+i*dy][col+i*dx] != '0' && word.charAt(i) != data[row+i*dy][col+i*dx]){
+                return false;
+            }
         }
-        if (dx == 1 && word.length()+col <= data[0].length){
-            return true;
-        }
-        if (dy == 1 && word.length()+row <= data.length){
-            return true;
-        }
-        if (dx == -1 && word.length() <= col){
-            return true;
-        }
-        if (dy == -1 && word.length() <= row){
-            return true;
-        }
-        return false;
+        return true;
     }
 
     public boolean addWord(String word,int row, int col, int dx, int dy){
         if (checkWord(word,row,col,dx,dy)){
             wordbank.add(word);
             for (int q = 0;q<word.length();q++){
-                data[row+dy][col+dx] = word.charAt(q);
+                data[row+q*dy][col+q*dx] = word.charAt(q);
             }
             return true;
         }
@@ -97,10 +88,10 @@ public class WordGrid1{
     public void wordload(){
         while (input.hasNextLine()){
             String a = input.nextLine();
+            outerloop:
             for(int i = 0;i<(rand.nextInt(9)+1);i++){
                 if(addWord(a,rand.nextInt(data.length),rand.nextInt(data[0].length),rand.nextInt(3)-1,rand.nextInt(3)-1)){
-                    wordbank.add(a);
-                    break;
+                    break outerloop;
                 }
             }
         }
@@ -108,7 +99,7 @@ public class WordGrid1{
 
     public void finalize(){
         for (int q = 0;q<data.length;q++){
-            for (int p = 0;p<(data[q].length);p++){
+            for (int p = 0;p<(data[0].length);p++){
                 if (data[q][p] == '0'){
                     data[q][p] = alphabet.charAt(rand.nextInt(alphabet.length()));
                 }
