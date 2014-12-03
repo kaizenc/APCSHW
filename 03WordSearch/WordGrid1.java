@@ -105,7 +105,7 @@ public class WordGrid1{
         while (input.hasNextLine()){
             String a = input.nextLine();
             for(int i = 0;i<(rand.nextInt(9)+1);i++){
-                if(addWord(a,rand.nextInt(data.length),rand.nextInt(data[0].length),rand.nextInt(data.length),rand.nextInt(data[0].length))){
+                if(addWord(a,rand.nextInt(data.length),rand.nextInt(data[0].length),rand.nextInt(3)-1,rand.nextInt(3)-1)){
                     wordbank.add(a);
                     break;
                 }

@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 
 public class Driver1{
 	public static void main(String[]args) throws FileNotFoundException{
-		WordGrid1 w;
+		WordGrid1 w = new WordGrid1(5,5,"words.txt");
 		if (args.length < 2){
 			System.out.println("\nHow to use:");
 			System.out.println("java Driver [rows] [cols] [seed(optional) [answers(optional)]]");
@@ -21,5 +21,6 @@ public class Driver1{
 		if (args.length == 4){
 			w = new WordGrid1(Integer.parseInt(args[0]),Integer.parseInt(args[1]),"words.txt",Long.parseLong(args[2]),Integer.parseInt(args[3]));
 		}
+		System.out.println(w);
 	}
 }
