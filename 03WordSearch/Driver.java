@@ -4,25 +4,31 @@ import java.io.FileNotFoundException;
 
 public class Driver{
 	public static void main(String[]args) throws FileNotFoundException{
-		WordGrid a = new WordGrid(4,5);
-		WordGrid b = new WordGrid(8,8,"words.txt");
-
-		//System.out.println(a);
-		//a.addWordHorizontal("add",0,2);
-		//System.out.println(a);
-		//a.addWordHorizontal("addeds",0,2);
-		//a.addWordVertical("dogs",0,1);
-		//System.out.println(a);
-		//a.addWordDiagonal("cat",1,2);
-		//System.out.println(a);
-		//a.finalize();
-		//System.out.println(a);
-
-		System.out.println(b);
-		//System.out.println(b.addWordHorizontal("cat",0,0));
-		b.allWords();
-		System.out.println(b);
-		b.finalize();
-		System.out.println(b);
+		WordGrid w = new WordGrid(5,5,"words.txt");
+		boolean asdf = true;
+		if (args.length < 2){
+			System.out.println("\nHow to use:");
+			System.out.println("java Driver [rows] [cols] [seed(optional) [answers(optional)]]");
+			System.out.println("rows, cols, and seed must all be integers");
+			System.out.println("For answers, enter 1 to reveal or leave it blank otherwise");
+			return;
+		}
+		if (args.length == 2){
+			w = new WordGrid(Integer.parseInt(args[0]),Integer.parseInt(args[1]),"words.txt");
+		}
+		if (args.length == 3){
+			w = new WordGrid(Integer.parseInt(args[0]),Integer.parseInt(args[1]),"words.txt",Long.parseLong(args[2]),0);
+		}
+		if (args.length == 4){
+			w = new WordGrid(Integer.parseInt(args[0]),Integer.parseInt(args[1]),"words.txt",Long.parseLong(args[2]),Integer.parseInt(args[3]));
+			if (Integer.parseInt(args[3]) == 1){
+				asdf = false;
+			}
+		}
+		w.wordload();
+		if (asdf){
+			w.finalize();
+		}
+		System.out.println(w);
 	}
 }
