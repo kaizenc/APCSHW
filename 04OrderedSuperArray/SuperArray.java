@@ -13,9 +13,7 @@ public class SuperArray{
 	public String toString(){
 		String result = "[ ";
 		for (String e : array){
-	    if (e != null){//will not print null Strings
-	    	result = result + e + " ";
-	    }
+	    result = result + e + " ";
 	  }
 	  return result + "]";
 	}
@@ -108,23 +106,14 @@ public class SuperArray{
 	}
     //Sorting
 	public void insertionSort(){
-		for (int i = 1;i<size();i++){
-			if (array[i]>array[i-1]){
-				continue;
-			}else{
-				Integer temp = array[i];
-				int l = position;
-				for(int q = 0;q<i;q++){
-					if (array[i]<array[q]){
-						l = q;
-						break;
-					}
-				}
-				for(int r = l;r<i;r++){
-					continue;
-		    //fix this part
-				}
+		for(int i = 1;i<truelength;i++){
+			int q = i;
+			String temp = get(q);
+			while(q > 0 && temp.compareTo(array[q-1]) < 0){
+				set(q,array[q-1]);
+				q--;
 			}
+			set(q,temp);
 		}
 	}
 }
