@@ -108,7 +108,8 @@ public class SuperArray{
 	public void insertionSort(){
 		for(int i = 1;i<truelength;i++){
 			int q = i;
-			String temp = get(q);
+			String temp = array[q];
+
 			while(q > 0 && temp.compareTo(array[q-1]) < 0){
 				set(q,array[q-1]);
 				q--;

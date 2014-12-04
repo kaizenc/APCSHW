@@ -6,6 +6,7 @@ public class Driver{
 		a.add("bronco");
 		a.add("clock");
 		System.out.println(a);
+		System.out.println(a.size());
 		a.insertionSort();
 		System.out.println(a);
 	}
