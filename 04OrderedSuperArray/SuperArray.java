@@ -117,4 +117,18 @@ public class SuperArray{
 			set(q,temp);
 		}
 	}
+    public void selectionSort(){
+	for (int i = 0;i<truelength;i++){
+	    String temp = array[i];
+	    int j = 0;
+	    for (int q = i;q<truelength;q++){
+		if(temp.compareTo(array[q])>0){
+		    temp = array[q];
+		    j=q;
+		}
+	    }
+	    array[j] = array[i];
+	    array[i] = temp;
+	}
+    }
 }

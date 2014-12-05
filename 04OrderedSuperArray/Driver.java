@@ -9,5 +9,13 @@ public class Driver{
 		System.out.println(a.size());
 		a.insertionSort();
 		System.out.println(a);
+		SuperArray b = new SuperArray(1);
+		b.add("donkey");
+		b.add("clock");
+		b.add("apple");
+		b.add("bronco");
+		System.out.println(b);
+		b.selectionSort();
+		System.out.println(b);
 	}
 }
