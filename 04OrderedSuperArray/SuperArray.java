@@ -120,7 +120,7 @@ public class SuperArray{
     public void selectionSort(){
 	for (int i = 0;i<truelength;i++){
 	    String temp = array[i];
-	    int j = 0;
+	    int j = i;
 	    for (int q = i;q<truelength;q++){
 		if(temp.compareTo(array[q])>0){
 		    temp = array[q];
