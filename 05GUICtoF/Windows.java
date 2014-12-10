@@ -1,8 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;]
-//Upload to GitHub with 05GUICtoF
-public class Windows extends JFrame {
+import java.awt.event.*;
+public class Windows extends JFrame{
     private Container pane;
 
     private JButton b;
@@ -22,10 +21,26 @@ public class Windows extends JFrame {
 	b = new JButton("Convert");
 	l = new JLabel("Converter",null,JLabel.CENTER);
 	t = new JTextField(12);
+
+	b.addActionListener(this);
+	b.setActionCommand("Testing");
+
 	pane.add(l);
 	pane.add(b);
 	pane.add(t);
     }
+
+    public void actionPerformed(ActionEvent e) {
+	if ("disable".equals(e.getActionCommand())) {
+	    b2.setEnabled(false);
+	    b1.setEnabled(false);
+	    b3.setEnabled(true);
+	} else {
+	    b2.setEnabled(true);
+	    b1.setEnabled(true);
+	    b3.setEnabled(false);
+	}
+    } 
 
     public static void main(String[] args) {
         Windows g = new Windows();
