@@ -1,49 +1,58 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-public class Windows extends JFrame{
-    private Container pane;
+public class Windows extends JFrame implements ActionListener{
+	private Container pane;
 
-    private JButton b;
-    private JLabel l;
-    private JTextField t;
-    private JCheckBox c;
-    public Windows() {
-	this.setTitle("My first GUI");
-	this.setSize(600,400);
-	this.setLocation(100,100);
-	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	private JButton b,clear;
+	private JLabel l;
+	private JTextField t;
+	private JCheckBox c;
+	private Container text;
+	private Container buttons;
+	public Windows(){
+		this.setTitle("C to F Converter!");
+		this.setSize(600,400);
+		this.setLocation(100,100);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
-	pane = this.getContentPane();
-	pane.setLayout(new FlowLayout());
+		pane = this.getContentPane();
+		pane.setLayout(new FlowLayout());
 
-	b = new JButton("Convert");
-	l = new JLabel("Converter",null,JLabel.CENTER);
-	t = new JTextField(12);
+		b = new JButton("Convert");
+		l = new JLabel("Converter",null,JLabel.CENTER);
+		t = new JTextField(12);
 
-	b.addActionListener(this);
-	b.setActionCommand("Testing");
+		b.setActionCommand("convert");
+		b.addActionListener(this);
+		clear.setActionCommand("delete");
+		clear.addActionListener(this);
 
-	pane.add(l);
-	pane.add(b);
-	pane.add(t);
-    }
+		pane.add(l);
+		pane.add(b);
+		pane.add(t);
 
-    public void actionPerformed(ActionEvent e) {
-	if ("disable".equals(e.getActionCommand())) {
-	    b2.setEnabled(false);
-	    b1.setEnabled(false);
-	    b3.setEnabled(true);
-	} else {
-	    b2.setEnabled(true);
-	    b1.setEnabled(true);
-	    b3.setEnabled(false);
+		text = new Container();
+		text.setLayout(new FlowLayout());
+		text.add(l);
+		text.add(t);
 	}
-    } 
 
-    public static void main(String[] args) {
-        Windows g = new Windows();
-        g.setVisible(true);
-    }
+	public void actionPerformed(ActionEvent e){
+		String action = e.getActionCommand();
+		if (action.equals("convert")){
+			String s = t.getText();
+			s = "" + (Double.parseDouble(s)*1.8+32);
+			t.setText(s);
+		}
+		if (action.equals("delete")){
+			t.setText("");
+		}
+	} 
+
+	public static void main(String[] args){
+		Windows g = new Windows();
+		g.setVisible(true);
+	}
 }
