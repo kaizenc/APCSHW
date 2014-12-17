@@ -19,12 +19,11 @@ public class Sorts{
 		}
 	}
 	public static void selectionSort(int[]array){
-		int truelength = array.length;
-		for (int i = 0;i<truelength;i++){
+		for (int i = 0;i<array.length;i++){
 			int temp = array[i];
 			int j = i;
-			for (int q = i;q<truelength;q++){
-				if(array[i]>array[q]){
+			for (int q = i;q<array.length;q++){
+				if(temp>array[q]){
 					temp = array[q];
 					j=q;
 				}
