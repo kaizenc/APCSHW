@@ -8,15 +8,14 @@ public class Sorts{
 	}
     //Sorting
 	public static void insertionSort(int[]array){
-		int truelength = array.length;
-		for(int i = 1;i<truelength;i++){
-			int q = i;
-			int temp = array[q];
-			while(q > 0 && array[q]<array[q-1]){
-				set(array,q,array[q-1]);
-				q--;
+		int temp = array[0];
+		int q = 0;
+		for(int i = 1;i<array.length;i++){
+			temp = array[i];
+			for(q = i - 1;(q>=0) && (array[q]>temp);q--){
+				array[q+1] = array[q];
 			}
-			set(array,q,temp);
+			array[q+1] = temp;
 		}
 	}
 	public static void selectionSort(int[]array){
